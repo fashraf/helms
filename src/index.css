@@ -1,0 +1,645 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design token system ─────────────────────────────────────────────────── */
+:root, html.dark {
+  --bg:           #070a14;  --bg2:  #0d1220;  --bg3:  #101828;
+  --card:         #0d1220;  --card2:#141f30;
+  --border:       #1d2d42;  --border2:#2b4060;
+  --text:         #e2e8f0;  --text2:#94a3b8;  --text3:#475569;
+  --primary:      #f59e0b;  --primary-light:#1a1200; --primary-dark:#d97706;
+  --success:      #10b981;  --success-light:#052e16;
+  --warning:      #f59e0b;  --warning-light:#1a1200;
+  --danger:       #ef4444;  --danger-light:#1a0000;
+  --purple:       #a855f7;  --purple-light:#1a0a2e;
+  --cyan:         #06b6d4;  --cyan-light:#0a1f2e;
+  --sidebar-bg:   #070a14;
+  --shadow:0 1px 3px rgba(0,0,0,.4),0 1px 2px rgba(0,0,0,.3);
+  --shadow-md:0 4px 16px rgba(0,0,0,.5); --shadow-lg:0 12px 40px rgba(0,0,0,.6);
+  --modal-overlay:rgba(4,6,14,.8);
+}
+html.light {
+  --bg:       #F0F4F8;
+  --bg2:      #E8EEF4;
+  --bg3:      #DCE4ED;
+  --card:     #FFFFFF;
+  --card2:    #F8FAFC;
+  --border:   #E2E8F0;
+  --border2:  #CBD5E1;
+  --text:     #0F172A;
+  --text2:    #374151;
+  --text3:    #6B7280;
+  --primary:        #2563EB;
+  --primary-light:  #EFF6FF;
+  --primary-dark:   #1D4ED8;
+  --success:        #059669;
+  --success-light:  #ECFDF5;
+  --warning:        #D97706;
+  --warning-light:  #FFFBEB;
+  --danger:         #DC2626;
+  --danger-light:   #FEF2F2;
+  --purple:         #7C3AED;
+  --purple-light:   #F5F3FF;
+  --cyan:           #0891B2;
+  --cyan-light:     #ECFEFF;
+  --sidebar-bg:     #FFFFFF;
+  --shadow:   0 1px 3px rgba(15,23,42,.06), 0 1px 2px rgba(15,23,42,.04);
+  --shadow-md:0 4px 16px rgba(15,23,42,.08);
+  --shadow-lg:0 12px 40px rgba(15,23,42,.12);
+  --modal-overlay: rgba(15,23,42,.45);
+}
+.t-bg{background:var(--bg);color:var(--text)}
+.t-card{background:var(--card);border-color:var(--border)}
+.t-card2{background:var(--card2);border-color:var(--border)}
+.t-border{border-color:var(--border)}
+.t-text{color:var(--text)} .t-text2{color:var(--text2)} .t-text3{color:var(--text3)}
+.t-primary{color:var(--primary)}
+.t-input{background:var(--bg2);border-color:var(--border);color:var(--text)}
+.t-input:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 2px color-mix(in srgb,var(--primary) 20%,transparent)}
+
+/* ── Light mode full override ─────────────────────────────────────────────── */
+html.light body { background-color: var(--bg); color: var(--text); }
+html.light ::-webkit-scrollbar-track { background: var(--bg2); }
+html.light ::-webkit-scrollbar-thumb { background: var(--border2); }
+html.light ::-webkit-scrollbar-thumb:hover { background: var(--border); }
+html.light input:-webkit-autofill,
+html.light input:-webkit-autofill:hover,
+html.light input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text);
+  -webkit-box-shadow: 0 0 0px 1000px var(--card) inset;
+}
+
+/* Background layers */
+html.light .bg-helm-950, html.light .bg-helm-900 { background-color: var(--bg) !important; }
+html.light .bg-helm-850  { background-color: var(--bg2) !important; }
+html.light .bg-helm-800  { background-color: var(--card) !important; }
+html.light .bg-helm-750  { background-color: var(--bg2) !important; }
+html.light .bg-helm-700  { background-color: var(--bg3) !important; }
+html.light .bg-helm-650  { background-color: var(--bg3) !important; }
+html.light .bg-helm-800\/80, html.light .bg-helm-850\/80 { background-color: rgba(255,255,255,0.92) !important; }
+html.light .bg-helm-850\/50, html.light .bg-helm-850\/30, html.light .bg-helm-850\/60 { background-color: var(--bg2) !important; }
+html.light .bg-helm-750\/50 { background-color: rgba(232,238,244,0.6) !important; }
+
+/* Borders */
+html.light .border-helm-700,
+html.light .border-helm-600 { border-color: var(--border) !important; }
+html.light .border-helm-500 { border-color: var(--border2) !important; }
+html.light .divide-helm-700\/40 > * { border-color: var(--border) !important; }
+html.light .divide-helm-700\/50 > * { border-color: var(--border) !important; }
+
+/* Text */
+html.light .text-white       { color: var(--text)  !important; }
+html.light .text-slate-100   { color: var(--text)  !important; }
+html.light .text-slate-200   { color: var(--text)  !important; }
+html.light .text-slate-300   { color: var(--text2) !important; }
+html.light .text-slate-400   { color: var(--text2) !important; }
+html.light .text-slate-500   { color: var(--text3) !important; }
+html.light .text-slate-600   { color: var(--text3) !important; }
+html.light .text-slate-700   { color: var(--border2) !important; }
+
+/* Shadows */
+html.light .shadow-card         { box-shadow: var(--shadow); }
+html.light .shadow-card-hover   { box-shadow: var(--shadow-md); }
+html.light .shadow-sidebar      { box-shadow: 2px 0 12px rgba(15,23,42,.06); }
+html.light .shadow-amber-glow-sm{ box-shadow: 0 0 12px rgba(37,99,235,.12); }
+html.light .shadow-amber-glow   { box-shadow: 0 0 20px rgba(37,99,235,.18); }
+
+/* Cards */
+html.light .helm-card {
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow);
+}
+html.light .helm-input {
+  background-color: var(--bg2);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+/* Sidebar */
+html.light .bg-helm-900.border-r { background-color: var(--sidebar-bg) !important; }
+
+/* Nav items */
+html.light .nav-item          { color: var(--text3); }
+html.light .nav-item:hover    { background-color: var(--bg2); color: var(--text2); }
+html.light .nav-item-active   { color: var(--primary) !important; background-color: var(--primary-light) !important; }
+html.light .nav-item-active::before { background-color: var(--primary) !important; }
+html.light .section-label     { color: var(--text3) !important; }
+
+/* Grid background */
+html.light .helm-grid-bg {
+  background-image:
+    linear-gradient(rgba(37,99,235,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,.03) 1px, transparent 1px);
+}
+
+/* Amber → Primary blue in light mode */
+html.light .text-amber-400  { color: var(--primary) !important; }
+html.light .text-amber-300  { color: var(--primary-dark) !important; }
+html.light .bg-amber-500    { background-color: var(--primary) !important; }
+html.light .bg-amber-500\/10  { background-color: var(--primary-light) !important; }
+html.light .bg-amber-500\/20  { background-color: rgba(37,99,235,.12) !important; }
+html.light .bg-amber-500\/5   { background-color: rgba(37,99,235,.05) !important; }
+html.light .bg-amber-500\/8   { background-color: rgba(37,99,235,.06) !important; }
+html.light .bg-amber-500\/15  { background-color: rgba(37,99,235,.10) !important; }
+html.light .bg-amber-500\/25  { background-color: rgba(37,99,235,.16) !important; }
+html.light .border-amber-500\/20 { border-color: rgba(37,99,235,.25) !important; }
+html.light .border-amber-500\/30 { border-color: rgba(37,99,235,.30) !important; }
+html.light .border-amber-500\/40 { border-color: rgba(37,99,235,.40) !important; }
+html.light .border-amber-500\/60 { border-color: rgba(37,99,235,.60) !important; }
+html.light .border-amber-500 { border-color: var(--primary) !important; }
+html.light .hover\:text-amber-400:hover { color: var(--primary) !important; }
+html.light .hover\:text-amber-300:hover { color: var(--primary-dark) !important; }
+html.light .ring-amber-500\/30 { --tw-ring-color: rgba(37,99,235,.30); }
+
+/* Helm-600 borders as light border */
+html.light .border-helm-600 { border-color: var(--border) !important; }
+
+/* Dark helm backgrounds used inside cards */
+html.light .bg-helm-700\/50 { background-color: rgba(203,213,225,.4) !important; }
+
+/* Topbar */
+html.light header.h-16 { background-color: var(--card) !important; border-bottom-color: var(--border) !important; }
+
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    background-color: #070a14;
+    color: #e2e8f0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0d1220;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1d2d42;
+    border-radius: 99px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2b4060;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #e2e8f0;
+    -webkit-box-shadow: 0 0 0px 1000px #0d1220 inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+@layer components {
+  .helm-card {
+    @apply bg-helm-800 border border-helm-600 rounded-xl shadow-card;
+  }
+
+  .helm-input {
+    @apply w-full bg-helm-750 border border-helm-600 rounded-lg px-4 py-3
+           text-slate-200 placeholder-slate-500 text-sm
+           focus:outline-none focus:border-amber-500/60 focus:ring-1 focus:ring-amber-500/30
+           transition-all duration-200;
+  }
+
+  .helm-btn-primary {
+    @apply bg-amber-500 hover:bg-amber-400 text-helm-900 font-semibold
+           px-5 py-2.5 rounded-lg transition-all duration-200
+           shadow-amber-glow-sm hover:shadow-amber-glow
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .helm-btn-ghost {
+    @apply bg-transparent hover:bg-helm-700 text-slate-400 hover:text-slate-200
+           px-4 py-2 rounded-lg transition-all duration-200 border border-transparent
+           hover:border-helm-500;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
+           text-slate-400 hover:text-slate-200 hover:bg-helm-700
+           transition-all duration-150 cursor-pointer relative;
+  }
+
+  .nav-item-active {
+    @apply text-amber-400 bg-amber-500/10 hover:bg-amber-500/15;
+  }
+
+  .nav-item-active::before {
+    content: '';
+    @apply absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-6 bg-amber-500 rounded-r;
+  }
+
+  .status-dot {
+    @apply inline-block w-2 h-2 rounded-full;
+  }
+
+  .page-header {
+    @apply mb-8;
+  }
+
+  .section-label {
+    @apply text-[10px] font-bold tracking-[0.15em] text-slate-600 uppercase px-3 mb-1 mt-5 first:mt-0;
+  }
+}
+
+@layer utilities {
+  .text-gradient-amber {
+    @apply bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent;
+  }
+
+  .border-b-helm {
+    @apply border-b border-helm-600;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+}
+
+/* Page grid background */
+.helm-grid-bg {
+  background-image:
+    linear-gradient(rgba(245, 158, 11, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Sidebar transition */
+.sidebar-expanded { width: 260px; }
+.sidebar-collapsed { width: 72px; }
+
+/* Toast progress bar shrink */
+@keyframes shrinkWidth {
+  from { width: 100%; }
+  to   { width: 0%;   }
+}
+
+/* New activity feed item slides in */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* KPI flash pulse */
+@keyframes flashPulse {
+  0%   { opacity: 1; }
+  40%  { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Urgent actions ambulance-light slow blink */
+@keyframes urgentBlink {
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  50%      { opacity: 0.5; transform: scale(1.10); }
+}
+.urgent-blink {
+  animation: urgentBlink 1.4s ease-in-out infinite;
+}
+
+.kpi-flash {
+  animation: flashPulse 0.7s ease-out;
+}
+
+/* Status dot pulse rings */
+.status-ring-ok {
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+  animation: statusPing 2s infinite;
+}
+
+@keyframes statusPing {
+  0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  70%  { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);   }
+}
+
+/* Recharts custom theme */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(45, 64, 96, 0.5);
+}
+
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: #141f30 !important;
+  border: 1px solid #1d2d42 !important;
+  border-radius: 8px !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LOGIN PAGE — clean dark layout with hairline divider lines that have a
+   localised bright spot of light flowing INSIDE them. No scroll, thin fonts.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* All decorative login lines: pure 1px elements with a transparent base.
+   The "light" is a small bright gradient region that slides along the line
+   via background-position animation. */
+.login-line {
+  position: absolute;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ─── Horizontal lines ────────────────────────────────────────────────── */
+.login-line-h {
+  left: 0;
+  right: 0;
+  height: 1px;
+  /* Hairline backdrop tinge + a localised bright spot ~10% of the line width */
+  background:
+    linear-gradient(90deg,
+      rgba(255,255,255,0)   0%,
+      rgba(255,255,255,0)   42%,
+      rgba(245,158,11,0.0)  45%,
+      rgba(245,158,11,0.95) 50%,
+      rgba(245,158,11,0.0)  55%,
+      rgba(255,255,255,0)   58%,
+      rgba(255,255,255,0)   100%),
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(255,255,255,0.06) 20%,
+      rgba(255,255,255,0.10) 50%,
+      rgba(255,255,255,0.06) 80%,
+      transparent 100%);
+  background-size: 200% 1px, 100% 1px;
+  background-position: -100% 0, 0 0;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.0);
+  animation: lineFlowH 14s linear infinite;
+}
+
+/* ─── Vertical lines ──────────────────────────────────────────────────── */
+.login-line-v {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0)   0%,
+      rgba(255,255,255,0)   42%,
+      rgba(6,182,212,0.0)   45%,
+      rgba(6,182,212,0.90)  50%,
+      rgba(6,182,212,0.0)   55%,
+      rgba(255,255,255,0)   58%,
+      rgba(255,255,255,0)   100%),
+    linear-gradient(180deg,
+      transparent 0%,
+      rgba(255,255,255,0.05) 20%,
+      rgba(255,255,255,0.08) 50%,
+      rgba(255,255,255,0.05) 80%,
+      transparent 100%);
+  background-size: 1px 200%, 1px 100%;
+  background-position: 0 -100%, 0 0;
+  background-repeat: no-repeat;
+  animation: lineFlowV 16s linear infinite;
+}
+
+@keyframes lineFlowH {
+  0%   { background-position: -100% 0, 0 0; }
+  100% { background-position:  200% 0, 0 0; }
+}
+@keyframes lineFlowV {
+  0%   { background-position: 0 -100%, 0 0; }
+  100% { background-position: 0  200%, 0 0; }
+}
+
+/* ─── Divider lines (between left/right panel + inside form card) ──────── */
+.login-line-v-divider {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      transparent 0%,
+      rgba(245,158,11,0.0)  35%,
+      rgba(245,158,11,0.85) 50%,
+      rgba(245,158,11,0.0)  65%,
+      transparent 100%),
+    linear-gradient(180deg,
+      transparent 0%,
+      rgba(255,255,255,0.05) 15%,
+      rgba(255,255,255,0.08) 50%,
+      rgba(255,255,255,0.05) 85%,
+      transparent 100%);
+  background-size: 1px 200%, 1px 100%;
+  background-position: 0 -100%, 0 0;
+  background-repeat: no-repeat;
+  animation: lineFlowV 18s linear infinite;
+}
+.login-line-h-divider {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(245,158,11,0.0)  35%,
+      rgba(245,158,11,0.85) 50%,
+      rgba(245,158,11,0.0)  65%,
+      transparent 100%),
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(255,255,255,0.05) 15%,
+      rgba(255,255,255,0.08) 50%,
+      rgba(255,255,255,0.05) 85%,
+      transparent 100%);
+  background-size: 200% 1px, 100% 1px;
+  background-position: -100% 0, 0 0;
+  background-repeat: no-repeat;
+  animation: lineFlowH 9s linear infinite;
+}
+
+/* ─── Form card subtle conic border with light flowing around ─────────── */
+.login-card {
+  position: relative;
+}
+.login-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 1rem;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--login-angle, 0deg),
+    rgba(245, 158, 11, 0)     0%,
+    rgba(245, 158, 11, 0.55) 12%,
+    rgba(245, 158, 11, 0)    24%,
+    rgba(255, 255, 255, 0)   50%,
+    rgba(6,   182, 212, 0)   60%,
+    rgba(6,   182, 212, 0.45)70%,
+    rgba(6,   182, 212, 0)   82%,
+    rgba(245, 158, 11, 0)   100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: loginCardSpin 12s linear infinite;
+  pointer-events: none;
+}
+@property --login-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes loginCardSpin {
+  to { --login-angle: 360deg; }
+}
+/* Fallback for browsers without @property — rotate the element subtly */
+@supports not (background: conic-gradient(from 0deg, red, blue)) {
+  .login-card::before { animation: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LOGIN PAGE — LIGHT THEME variants (cleaner card, slate lines with amber
+   light flowing inside them, blue accents).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.login-line-light {
+  position: absolute;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Horizontal lines on light bg: slate hairline + amber light spot */
+.login-line-light-h {
+  left: 0;
+  right: 0;
+  height: 1px;
+  background:
+    linear-gradient(90deg,
+      rgba(15,23,42,0)     0%,
+      rgba(15,23,42,0)     42%,
+      rgba(245,158,11,0)   45%,
+      rgba(245,158,11,0.9) 50%,
+      rgba(245,158,11,0)   55%,
+      rgba(15,23,42,0)     58%,
+      rgba(15,23,42,0)     100%),
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(148,163,184,0.18) 20%,
+      rgba(148,163,184,0.30) 50%,
+      rgba(148,163,184,0.18) 80%,
+      transparent 100%);
+  background-size: 200% 1px, 100% 1px;
+  background-position: -100% 0, 0 0;
+  background-repeat: no-repeat;
+  animation: lineFlowH 14s linear infinite;
+}
+
+/* Vertical lines on light bg: slate hairline + blue light spot */
+.login-line-light-v {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background:
+    linear-gradient(180deg,
+      rgba(15,23,42,0)     0%,
+      rgba(15,23,42,0)     42%,
+      rgba(37,99,235,0)    45%,
+      rgba(37,99,235,0.85) 50%,
+      rgba(37,99,235,0)    55%,
+      rgba(15,23,42,0)     58%,
+      rgba(15,23,42,0)     100%),
+    linear-gradient(180deg,
+      transparent 0%,
+      rgba(148,163,184,0.15) 20%,
+      rgba(148,163,184,0.25) 50%,
+      rgba(148,163,184,0.15) 80%,
+      transparent 100%);
+  background-size: 1px 200%, 1px 100%;
+  background-position: 0 -100%, 0 0;
+  background-repeat: no-repeat;
+  animation: lineFlowV 16s linear infinite;
+}
+
+/* Panel divider (vertical, light theme) */
+.login-line-light-v-divider {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      transparent 0%,
+      rgba(245,158,11,0)    35%,
+      rgba(245,158,11,0.85) 50%,
+      rgba(245,158,11,0)    65%,
+      transparent 100%),
+    linear-gradient(180deg,
+      transparent 0%,
+      rgba(148,163,184,0.18) 15%,
+      rgba(148,163,184,0.28) 50%,
+      rgba(148,163,184,0.18) 85%,
+      transparent 100%);
+  background-size: 1px 200%, 1px 100%;
+  background-position: 0 -100%, 0 0;
+  background-repeat: no-repeat;
+  animation: lineFlowV 18s linear infinite;
+}
+
+/* Form-card horizontal divider (light theme) */
+.login-line-light-h-divider {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(245,158,11,0)    35%,
+      rgba(245,158,11,0.85) 50%,
+      rgba(245,158,11,0)    65%,
+      transparent 100%),
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(148,163,184,0.15) 15%,
+      rgba(148,163,184,0.25) 50%,
+      rgba(148,163,184,0.15) 85%,
+      transparent 100%);
+  background-size: 200% 1px, 100% 1px;
+  background-position: -100% 0, 0 0;
+  background-repeat: no-repeat;
+  animation: lineFlowH 9s linear infinite;
+}
+
+/* Card animated gradient border (light theme) */
+.login-card-light {
+  position: relative;
+}
+.login-card-light::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 1rem;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--login-angle, 0deg),
+    rgba(37,  99, 235, 0)    0%,
+    rgba(37,  99, 235, 0.55)12%,
+    rgba(37,  99, 235, 0)   24%,
+    rgba(245, 158, 11, 0)   50%,
+    rgba(245, 158, 11, 0.45)60%,
+    rgba(245, 158, 11, 0)   72%,
+    rgba(37,  99, 235, 0)  100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: loginCardSpin 14s linear infinite;
+  pointer-events: none;
+}
+@supports not (background: conic-gradient(from 0deg, red, blue)) {
+  .login-card-light::before {
+    background: linear-gradient(135deg, rgba(37,99,235,0.30), rgba(245,158,11,0.30));
+    animation: none;
+  }
+}
